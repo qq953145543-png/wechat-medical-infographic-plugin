@@ -1,0 +1,7 @@
+interface:
+  display_name: "WeChat 公众号医学科普系列长图"
+  short_description: "输入健康主题，生成六张统一风格的公众号医学科普长图"
+  icon_large: "./assets/preview.png"
+  default_prompt: "Use $artifact-template-wechat to turn 高血压健康知识大全 into a six-image WeChat medical-education series."
+policy:
+  allow_implicit_invocation: true

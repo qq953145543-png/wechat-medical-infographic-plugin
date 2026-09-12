@@ -1,0 +1,40 @@
+{
+  "name": "wechat-medical-infographic",
+  "version": "1.0.0",
+  "description": "Generate a six-image Chinese WeChat medical-education series from one health topic.",
+  "author": {
+    "name": "qq953145543-png",
+    "url": "https://github.com/qq953145543-png"
+  },
+  "homepage": "https://github.com/qq953145543-png/wechat-medical-infographic-plugin",
+  "repository": "https://github.com/qq953145543-png/wechat-medical-infographic-plugin",
+  "keywords": [
+    "wechat",
+    "medical-education",
+    "infographic",
+    "imagegen",
+    "chinese"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "公众号医学科普系列长图",
+    "shortDescription": "输入一个健康主题，自动生成六张统一风格的医学科普长图",
+    "longDescription": "输入高血压、糖尿病、术后康复等健康科普主题，先策划五个递进问题标题和第六张该做／不该做清单，再生成六张人物、版式和配色统一的微信公众号竖版长图。",
+    "developerName": "qq953145543-png",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/qq953145543-png/wechat-medical-infographic-plugin",
+    "defaultPrompt": [
+      "主题：高血压健康知识大全，请生成六张公众号医学科普系列长图。",
+      "主题：糖尿病日常管理，请策划标题并生成完整六图系列。"
+    ],
+    "brandColor": "#1457B9",
+    "screenshots": [
+      "./assets/screenshot1.png",
+      "./assets/screenshot2.png"
+    ]
+  }
+}
