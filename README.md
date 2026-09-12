@@ -8,13 +8,12 @@
 4. 生成 6 张人物、版式与配色统一的微信公众号竖版长图；
 5. 检查中文、数字、单位和医学安全。
 
-## 在 Codex 中安装
+## 在 Codex 中一行安装
 
-第一次使用时，在 Codex 终端依次运行：
+第一次使用时，把下面整行复制到 Codex 终端运行：
 
 ```bash
-codex plugin marketplace add qq953145543-png/wechat-medical-infographic-plugin
-codex plugin add wechat-medical-infographic@wechat-medical-infographic
+codex plugin marketplace add qq953145543-png/wechat-medical-infographic-plugin && codex plugin add wechat-medical-infographic@wechat-medical-infographic
 ```
 
 安装完成后，新建一个 Codex 任务，输入：
@@ -30,7 +29,7 @@ Codex 会先列出 01–06 的标题，然后继续生成六张系列图片。
 发布新版本后，重新运行：
 
 ```bash
-codex plugin marketplace add qq953145543-png/wechat-medical-infographic-plugin
+codex plugin marketplace upgrade wechat-medical-infographic
 codex plugin add wechat-medical-infographic@wechat-medical-infographic
 ```
 
