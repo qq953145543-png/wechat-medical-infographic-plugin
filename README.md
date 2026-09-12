@@ -1,4 +1,4 @@
-# 公众号医学科普系列长图（Codex 插件）
+# 公众号医学科普系列长图 Skill
 
 输入一个健康科普系列主题，自动完成：
 
@@ -8,37 +8,33 @@
 4. 生成 6 张人物、版式与配色统一的微信公众号竖版长图；
 5. 检查中文、数字、单位和医学安全。
 
-## 在 Codex 中一行安装
+## 在 Codex 对话中安装
 
-第一次使用时，把下面整行复制到 Codex 终端运行：
-
-```bash
-codex plugin marketplace add qq953145543-png/wechat-medical-infographic-plugin && codex plugin add wechat-medical-infographic@wechat-medical-infographic
-```
-
-安装完成后，新建一个 Codex 任务，输入：
+不需要打开终端。学员在 Codex 中新建一个任务，把下面整段话复制进去发送：
 
 ```text
-使用 $artifact-template-wechat，主题：高血压健康知识大全
+请使用 $skill-installer 安装以下最新版 Skill：
+
+https://github.com/qq953145543-png/wechat-medical-infographic-plugin/tree/main/artifact-template-wechat
+
+这是首次安装，不要使用旧的本地缓存。安装完成后告诉我安装结果。
 ```
 
-Codex 会先列出 01–06 的标题，然后继续生成六张系列图片。
+Codex 完成安装后，再新建一个任务并输入：
 
-## 更新
-
-发布新版本后，重新运行：
-
-```bash
-codex plugin marketplace upgrade wechat-medical-infographic
-codex plugin add wechat-medical-infographic@wechat-medical-infographic
+```text
+$artifact-template-wechat 高血压健康知识大全
 ```
 
-随后新建任务使用更新后的版本。
+主题可以替换为糖尿病日常管理、冠心病健康知识、骨质疏松预防等。
+
+Codex 会先列出 01–06 的系列标题，然后继续生成六张统一风格的图片。
 
 ## 使用要求
 
-- 安装 Codex，并登录可使用图片生成的账号；
-- 保持联网，以便核对最新医学资料；
+- 使用支持 Skills 与图片生成的 Codex 桌面应用；
+- 登录可使用图片生成的账号；
+- 保持联网，以便安装 Skill 和核对最新医学资料；
 - 医学科普内容不能代替医生的个体化诊断与治疗建议。
 
 ## 包含内容
