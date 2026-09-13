@@ -1,0 +1,7 @@
+interface:
+  display_name: "医学公众号图文一键生成"
+  short_description: "从权威核稿到统一配图，并生成可带图复制的微信公众号预览稿"
+  default_prompt: "使用 $wechat-medical-oneclick 根据我的医学科普标题，一次完成核稿、全部配图和可带图复制的微信预览。"
+
+policy:
+  allow_implicit_invocation: true
