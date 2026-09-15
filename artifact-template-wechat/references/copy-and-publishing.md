@@ -1,4 +1,4 @@
-# Copy and WeChat publishing
+# Copy and local WeChat preview
 
 ## Caption standard
 
@@ -44,6 +44,7 @@ Save the package as:
 ```text
 outputs/<topic-slug>-wechat-series/
 ├── article.md
+├── wechat-preview.html
 └── images/
     ├── 01.png
     ├── 02.png
@@ -55,22 +56,33 @@ outputs/<topic-slug>-wechat-series/
 
 Use the first image as the visual cover when a cover is required. Keep the six captions intact in article mode; do not use WeChat's short image-text/贴图 mode because six captions of about 300 characters exceed its 1000-character content limit.
 
-## One-click WeChat draft import
+## Standalone rich-text preview
 
-Treat “复制图文到公众号”, “一键导入公众号”, and “发布公众号” as requests to use `$baoyu-post-to-wechat` with the assembled `article.md`.
+Treat “复制图文到公众号”, “一键复制公众号排版”, and similar wording as a request to build a local preview, not as authorization to control the WeChat backend.
 
-1. Prefer the browser method for learners because it does not require an AppID/AppSecret.
-2. On first use, follow `$baoyu-post-to-wechat` first-time setup and select `browser` as the default publishing method unless the user explicitly prefers API.
-3. Open Chrome through the publisher workflow and let the user scan the WeChat Official Account QR code when required.
-4. Import the complete Markdown article with all six inline images.
-5. Save to the Official Account draft box by default.
-6. Report success only after the editor or script confirms that the draft was saved.
-7. Require explicit user confirmation before any live publication or mass send.
-
-If `$baoyu-post-to-wechat` is unavailable, ask the user to install it with `$skill-installer` from:
+Run from the skill directory:
 
 ```text
-https://github.com/JimLiu/baoyu-skills/tree/main/skills/baoyu-post-to-wechat
+python3 scripts/build_wechat_preview.py /absolute/path/article.md /absolute/path/wechat-preview.html
 ```
 
-Do not claim one-click import is available until that dependency is installed and its first-time setup is complete.
+The generated file must use the “摸鱼绿编号章节版” layout:
+
+- White article surface, deep-brown headings, muted fishing-green accents, pale-green dividers, rounded image cards, and continuous `PART 01` to `PART 06` chapter labels.
+- Every body image is a standard `<img>` element whose `src` is a complete `data:image/...;base64,...` URL.
+- No CSS background image, `blob:`, `file://`, relative image path, or temporary remote image is allowed in the final HTML.
+- All copyable content is inside `#output` and uses inline styles so rich-text paste retains as much formatting as possible.
+- The `复制排版正文（含图片）` button begins disabled and becomes available only after every embedded image is loaded and decoded.
+- Copy the rich HTML DOM from `#output` together with its images. Never implement a text-only copy action.
+
+## Completion check and handoff
+
+The script must report these three values separately and they must match exactly:
+
+1. Markdown image count;
+2. HTML `<img>` count;
+3. successfully embedded `data:` image count.
+
+Do not report the preview as ready if any count differs or any image cannot be decoded. At completion, show the article summary, core points, human-confirmation items, reference overview, numbered image list, image-verification result, and absolute paths for all files.
+
+Only create the local preview. Never log in, publish, mass-send, or save a WeChat draft. Tell the learner to open `wechat-preview.html`, wait until the button becomes available, click it, paste into the Official Account editor, visually confirm all images, and save the draft themselves.

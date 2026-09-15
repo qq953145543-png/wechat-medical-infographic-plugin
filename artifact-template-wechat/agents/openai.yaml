@@ -1,7 +1,7 @@
 interface:
   display_name: "WeChat 公众号医学科普系列长图"
-  short_description: "生成六张医学长图、逐图300字文案并可导入公众号草稿"
+  short_description: "生成六张医学长图、逐图文案和可复制的本地HTML"
   icon_large: "./assets/preview.png"
-  default_prompt: "Use $artifact-template-wechat to turn 高血压健康知识大全 into six images with 300-character captions and prepare a WeChat draft."
+  default_prompt: "Use $artifact-template-wechat to turn 高血压健康知识大全 into six images with 300-character captions and a local rich-text HTML preview for manual WeChat paste."
 policy:
   allow_implicit_invocation: true

@@ -1,6 +1,6 @@
 ---
 name: artifact-template-wechat
-description: "Create a six-image Chinese WeChat medical-education series with about 300 Chinese characters of publish-ready copy for every image, using the WeChat 公众号医学科普系列长图 template and retained references. Use when the user supplies a health-series topic, asks for 公众号医学科普配图/长图/系列海报, requests 图文文案 or 一键导入公众号, selects WeChat 公众号医学科普系列长图, or invokes $artifact-template-wechat. Plan five progressive question titles plus a sixth 做／不做 checklist, generate and caption all six pages, and optionally hand the assembled article to $baoyu-post-to-wechat for browser-based draft import."
+description: "Create a six-image Chinese WeChat medical-education series with about 300 Chinese characters of publish-ready copy for every image, then build a standalone rich-text HTML preview whose embedded images can be copied and pasted manually into the WeChat Official Account editor. Use when the user supplies a health-series topic, asks for 公众号医学科普配图/长图/系列海报, requests 图文文案 or 可复制公众号排版, selects WeChat 公众号医学科普系列长图, or invokes $artifact-template-wechat. Plan five progressive question titles plus a sixth 做／不做 checklist, generate and caption all six pages, and finish locally without publishing."
 ---
 
 # WeChat 公众号医学科普系列长图
@@ -11,7 +11,7 @@ Turn one Chinese health topic into a complete six-image WeChat series. Do not st
 
 1. Read `artifact-template.json` and resolve all paths relative to this skill directory.
 2. Read `references/series-spec.md` completely before planning or generating.
-3. Read `references/copy-and-publishing.md` completely before drafting captions or preparing a WeChat import.
+3. Read `references/copy-and-publishing.md` completely before drafting captions or building the local WeChat preview.
 4. Use `assets/reference.png` as the primary composition reference and `assets/reference-data-cards.png` as the secondary reference for definition tables and caution cards. Keep both files unchanged.
 
 ## Workflow
@@ -34,9 +34,11 @@ Turn one Chinese health topic into a complete six-image WeChat series. Do not st
 10. Immediately after each image passes inspection, write a related caption of `260–340` Chinese characters. Start with the exact page title, add patient-friendly explanation and practical actions, and end with a calm reminder or engagement line. Do not merely transcribe the text already inside the image.
 11. Present each completed page as `image → title → caption`, in numerical order. Do not wait until all six images finish before drafting all captions in a batch.
 12. After all six pages are complete, assemble a WeChat-ready Markdown article that interleaves the six images and captions. Save it together with numerically named images in a user-facing output directory.
-13. If the user already requested “一键复制／导入／发布到公众号”, continue to the WeChat draft-import workflow. Otherwise offer the exact action `一键导入公众号草稿` after returning the series.
-14. Use `$baoyu-post-to-wechat` with the assembled Markdown and browser method to place the full article into the WeChat Official Account editor. First use may require Chrome and QR-code login. Save to the draft box by default; never mass-publish without explicit confirmation.
-15. Return a compact note listing the medical sources used, any regional assumption, the saved article path, and whether the WeChat draft import succeeded. Do not put URLs or dense citations inside the artwork.
+13. Generate a standalone “摸鱼绿编号章节版” HTML preview by running `scripts/build_wechat_preview.py article.md wechat-preview.html`. All body images must be standard `<img>` tags fully embedded as `data:` URLs. Never use CSS background images, `blob:`, `file://`, relative image paths, or temporary network images in the resulting HTML.
+14. The HTML must provide a `复制排版正文（含图片）` button. Keep it disabled until all images have loaded successfully. The button must copy rich-text HTML and embedded images from `#output`; copying plain text alone is not acceptable.
+15. Before completion, compare the Markdown image count, HTML `<img>` count, and successfully embedded image count. All three must be identical. Treat any mismatch or image decode failure as incomplete and fix it before reporting success.
+16. Generate only local files. Do not log in to WeChat, open the Official Account backend, publish, mass-send, or claim that a draft was saved.
+17. Finish by showing: article summary, core points, items requiring human confirmation, reference overview, image list, image-verification result, and absolute paths for every output file, especially the local `wechat-preview.html`. Remind the user to open that HTML, click the copy button, paste into the WeChat editor, visually confirm all images, and then save the draft manually.
 
 ## Safety and content rules
 
@@ -49,4 +51,4 @@ Turn one Chinese health topic into a complete six-image WeChat series. Do not st
 
 ## Output standard
 
-The set is incomplete until all six pages, six captions, and the assembled WeChat article exist and pass visual and medical checks. Preserve the reference's overall composition and visual hierarchy while adapting card types to the topic; do not mechanically force a blood-pressure table into unrelated topics.
+The set is incomplete until all six pages, six captions, the Markdown article, and the verified standalone HTML preview exist and pass visual and medical checks. Preserve the reference's overall composition and visual hierarchy while adapting card types to the topic; do not mechanically force a blood-pressure table into unrelated topics.
